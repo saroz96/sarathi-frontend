@@ -73,42 +73,42 @@ const Items = () => {
 
 
     useEffect(() => {
-
-        const fetchItems = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/items/getitemsinform`);
-                if (response.data.success) {
-                    setData({
-                        items: response.data.items,
-                        categories: response.data.categories,
-                        itemsCompanies: response.data.itemsCompanies,
-                        units: response.data.units,
-                        mainUnits: response.data.mainUnits,
-                        compositions: response.data.composition,
-                        company: response.data.company,
-                        currentFiscalYear: response.data.currentFiscalYear,
-                        vatEnabled: response.data.vatEnabled,
-                        companyId: response.data.companyId,
-                        currentCompanyName: response.data.currentCompanyName,
-                        companyDateFormat: response.data.companyDateFormat,
-                        nepaliDate: response.data.nepaliDate,
-                        fiscalYear: response.data.fiscalYear,
-                        user: response.data.user,
-                        theme: response.data.theme,
-                        isAdminOrSupervisor: response.data.isAdminOrSupervisor
-                    });
-                } else {
-                    throw new Error(response.data.error || 'Failed to fetch items');
-                }
-            } catch (err) {
-                handleApiError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchItems();
     }, []);
+
+    const fetchItems = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/items/getitemsinform`);
+            if (response.data.success) {
+                setData({
+                    items: response.data.items,
+                    categories: response.data.categories,
+                    itemsCompanies: response.data.itemsCompanies,
+                    units: response.data.units,
+                    mainUnits: response.data.mainUnits,
+                    compositions: response.data.composition,
+                    company: response.data.company,
+                    currentFiscalYear: response.data.currentFiscalYear,
+                    vatEnabled: response.data.vatEnabled,
+                    companyId: response.data.companyId,
+                    currentCompanyName: response.data.currentCompanyName,
+                    companyDateFormat: response.data.companyDateFormat,
+                    nepaliDate: response.data.nepaliDate,
+                    fiscalYear: response.data.fiscalYear,
+                    user: response.data.user,
+                    theme: response.data.theme,
+                    isAdminOrSupervisor: response.data.isAdminOrSupervisor
+                });
+            } else {
+                throw new Error(response.data.error || 'Failed to fetch items');
+            }
+        } catch (err) {
+            handleApiError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleApiError = (error) => {
         if (error.response) {
